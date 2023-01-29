@@ -1,5 +1,5 @@
 #include "lib/include.h"
-
+// ADC CHRISTIAN
 extern void ADC_CONFIG(void){
     SYSCTL -> RCGCADC = (1 << 0); // HABILITAR MODULO 0
     //SYSCTL -> RCGCADC = (1 << 1); // HABILITAR MODULO 1
