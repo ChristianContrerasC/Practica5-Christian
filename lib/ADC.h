@@ -8,7 +8,7 @@
 #ifndef ADC_ADC_H_
 #define ADC_ADC_H_
 
-extern void ADC_CONFIGURATION(void);
-extern void SEQ_CONFIGURATION(void);
+extern void ADC_CONFIG(void);
+extern void SEQ_CONFIG(void);
 
 #endif /* ADC_ADC_H_ */

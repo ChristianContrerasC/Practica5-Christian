@@ -5,6 +5,12 @@
         "include.h": "c",
         "tm4c123gh6pm.h": "c",
         "core_cm4.h": "c",
-        "uart.h": "c"
-    }
+        "uart.h": "c",
+        "bit": "c",
+        "*.tcc": "c",
+        "functional": "c",
+        "random": "c",
+        "limits": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

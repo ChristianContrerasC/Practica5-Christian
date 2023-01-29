@@ -36,6 +36,25 @@ static void NmiSR(void);
 static void FaultISR(void);
 static void IntDefaultHandler(void);
 
+// INTERRUPCION PARA EL ADC
+unsigned int LECTURAADC;  
+void ADCS1INTERRUPCION(void);
+while((ADC0 -> RIS & 8) == 0)
+{
+    {
+        ADC0 -> PSSI |= (1 << 3);
+        LECTURAADC = ADC0 -> SSFIFO2&0xFFF; //ENTRADA SALIDA
+        ADC0 -> ISC = 8; 
+        if (LECTURAADC >= 2048){
+            GPIOC -> DATA |= (1 << 1); 
+        }
+        else if (LECTURAADC < 2048){
+            GPIOC -> DATA &= ~(1 << 1); 
+        }
+    }
+}
+
+     
 //*****************************************************************************
 //
 // The entry point for the application.
@@ -125,7 +144,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // uDMA Software Transfer
     IntDefaultHandler,                      // uDMA Error
     IntDefaultHandler,                      // ADC1 Sequence 0
-    IntDefaultHandler,                      // ADC1 Sequence 1
+    ADCS1INTERRUPCION,                      // ADC1 Sequence 1
     IntDefaultHandler,                      // ADC1 Sequence 2
     IntDefaultHandler,                      // ADC1 Sequence 3
     0,                                      // Reserved

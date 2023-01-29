@@ -64,7 +64,7 @@ extern void ADC_CONFIG(void){
     
 } 
 
-extern void ADC0_InSeqs(uint16_t *Result){
+extern void SEQ_CONFIG(uint16_t *Result){
     //ADC Processor Sample Sequence Initiate (ADCPSSI)
        ADC0->PSSI |= (1<<2) | (1<<1);
 
@@ -91,7 +91,8 @@ extern void ADC0_InSeqs(uint16_t *Result){
         PWM1->_3_CMPA = (int)((1*Result[1])/4095) - 1;
         PWM1->_2_CMPA = 0;
         ADC0->ISC = 0x0004;  //Conversion finalizada
-
+        duty[0] =(Result[0]*37500)/4096;
+        duty[1] = (Result[1]*25000)/4096;
 
 }
 
